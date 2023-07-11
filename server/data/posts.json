@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "timeStamp": "2018/01/13 14:54:44",
+        "message": "Welcome!\nYou are on imageboard.\nImageboard is a type of Internet forum which operates mostly via posting images.",
+        "imageUrl": ""
+    },
+    {
+        "id": 2,
+        "timeStamp": "2018/01/18 23:43:45",
+        "message": "Here we go.",
+        "imageUrl": "img/2.jpeg"
+    },
+    {
+        "id": 3,
+        "timeStamp": "2018/01/18 23:56:32",
+        "message": "This imageboard supports JPEG and PNG formats.",
+        "imageUrl": ""
+    },
+    {
+        "id": 4,
+        "timeStamp": "2018/01/19 00:07:29",
+        "message": "You can also \"reply\" to post, by making link on it. Link looks like >>[message number].\r\nExample: >>1.",
+        "imageUrl": ""
+    },
+    {
+        "id": 5,
+        "timeStamp": "2018/01/19 00:09:07",
+        "message": "When you click on the link, you will be taken to the post.",
+        "imageUrl": ""
+    },
+    {
+        "id": 6,
+        "timeStamp": "2018/01/19 00:09:46",
+        "message": ">>50\r\nThis is an reply to a post that does not exist, it is not a link. As soon as this post appears, the reply becomes a link.",
+        "imageUrl": ""
+    },
+    {
+        "id": 7,
+        "timeStamp": "2018/01/19 00:11:25",
+        "message": "All this works on React + Node.js, you can find the source code by the link: <a href=\"https://github.com/VasylievIvan/nodeboard\">github.com/VasylievIvan/nodeboard</a>(still on work).",
+        "imageUrl": ""
+    },
+    {
+        "id": 8,
+        "timeStamp": "2018/01/21 15:42:31",
+        "message": "You can click on image preview to see the full size image.",
+        "imageUrl": "img/8.jpeg"
+    }
+]
