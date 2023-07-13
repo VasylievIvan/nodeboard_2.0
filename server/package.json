@@ -13,13 +13,20 @@
   "author": "Ivan Vasyliev <vasylievia@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "body-parser": "^1.20.2",
+    "camelize-ts": "^3.0.0",
     "cors": "^2.8.5",
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "multer": "^1.4.5-lts.1",
+    "nanoid": "^4.0.2",
+    "pg": "^8.11.1"
   },
   "devDependencies": {
     "@types/cors": "^2.8.13",
     "@types/express": "^4.17.17",
+    "@types/multer": "^1.4.7",
     "@types/node": "^20.4.1",
+    "@types/pg": "^8.10.2",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "eslint": "^8.44.0",

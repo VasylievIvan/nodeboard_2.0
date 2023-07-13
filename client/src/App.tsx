@@ -23,16 +23,6 @@ const Header = styled.h1`
 `;
 
 function App() {
-  const [posts, setPosts] = useState<Post[]>([]);
-  useEffect(() => {
-    try {
-      fetch("http://localhost:3001/api/posts")
-        .then((res) => res.json())
-        .then((data) => setPosts(data));
-    } catch (err) {
-      console.log(err);
-    }
-  }, []);
   return (
     <div className="App">
       <Header>ЧЯ.т</Header>

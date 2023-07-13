@@ -1,20 +1,31 @@
 import express from "express";
 import { getPosts } from "./controllers/dataController";
 import cors from "cors";
+import bodyParser from "body-parser";
+import postRoutes from "./routes/post.routes";
 
-const app = express();
 const port = 3001;
 
-app.use(cors())
+const app = express();
+
+app.use(cors());
+app.use(express.static("data"));
+//app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(postRoutes);
 
 app.get("/", (req, res) => {
   res.send("Hello from Express!");
 });
 
-app.get("/api/posts", (req, res) => {
-    getPosts(data => res.json(data));
-  });
+const start = async () => {
+  try {
+    app.listen(port, () => {
+      console.log(`Express server running on port ${port}`);
+    });
+  } catch (e) {
+    console.log(e);
+  }
+};
 
-app.listen(port, () => {
-  console.log(`Express server running on port ${port}`);
-});
+start();

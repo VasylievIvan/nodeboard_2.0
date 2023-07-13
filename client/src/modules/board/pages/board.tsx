@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Post from "../components/post";
 import styled from "styled-components";
+import SendForm from "../components/sendForm";
 
 export type PostType = {
   id: number;
@@ -23,48 +24,48 @@ const Link = styled.a`
   }
 `;
 
-const Form = styled.form`
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-
-  & > input {
-    height: 30px;
-  }
-
-  & > textarea {
-    min-height: 80px;
-    min-width: 350px;
-  }
-  & > input[type="submit"] {
-    height: 36px;
-    width: 120px;
-    background: none;
-    box-shadow: none;
-    outline: 0;
-    border: 1px solid black;
-  }
-  & > input[type="button"] {
-    height: 35px;
-    width: 120px;
-    background: none;
-    box-shadow: none;
-    outline: 0;
-    border: 1px solid black;
-  }
-`;
-
 function Board() {
   const [posts, setPosts] = useState<PostType[]>([]);
-  useEffect(() => {
+
+  const fetchPosts = async () => {
     try {
-      fetch("http://localhost:3001/api/posts")
-        .then((res) => res.json())
-        .then((data) => setPosts(data));
+      const res = await fetch("http://localhost:3001/api/posts");
+      const data = await res.json();
+      setPosts(data);
     } catch (err) {
       console.log(err);
     }
+  };
+
+  useEffect(() => {
+    fetchPosts();
   }, []);
+
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    const message = data.get("message");
+    const file = data.get("fileInput");
+    //reset form
+
+    if (message === "") {
+      return;
+    }
+    
+
+    fetch("http://localhost:3001/api/posts", {
+      method: "POST",
+      body: data,
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        form.reset();
+        fetchPosts();
+      })
+      .catch((err) => console.log(err));
+  };
   return (
     <div>
       <Posts>
@@ -73,17 +74,7 @@ function Board() {
           <Post post={post} key={post.id} />
         ))}
       </Posts>
-      <Form
-        id="form"
-        // enctype="multipart/form-data"
-        // ref="messageForm"
-        onSubmit={() => {}}
-        //accept="image/png, image/jpeg"
-      >
-        <textarea value={"this.state.value1"} onChange={() => {}} />
-        <input type="file" name="fileInput" id="fileInput" />
-        <input type="submit" value="Send" />
-      </Form>
+      <SendForm handleSubmit={handleSubmit} />
     </div>
   );
 }
