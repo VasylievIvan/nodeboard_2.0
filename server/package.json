@@ -1,11 +1,13 @@
 {
   "name": "nodeboard_client",
   "version": "1.0.0",
+  "type": "module",
   "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "nodemon --watch 'src/**/*.ts' --exec 'ts-node' src/index.ts",
-    "start": "ts-node src/index.ts",
+    "start": "npm run build && node build/main",
+    "build": "rimraf ./build && npx tsc",
     "lint": "npx eslint ./src",
     "format": "npx eslint ./src --fix",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -13,9 +15,11 @@
   "author": "Ivan Vasyliev <vasylievia@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "bcrypt-ts": "^4.0.0",
     "body-parser": "^1.20.2",
     "camelize-ts": "^3.0.0",
     "cors": "^2.8.5",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "multer": "^1.4.5-lts.1",
     "nanoid": "^4.0.2",

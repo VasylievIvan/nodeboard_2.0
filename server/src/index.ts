@@ -1,10 +1,12 @@
 import express from "express";
 import { getPosts } from "./controllers/dataController";
 import cors from "cors";
+import postRoutes from "./routes/postRoutes";
 import bodyParser from "body-parser";
-import postRoutes from "./routes/post.routes";
+import userController from "./controllers/userController";
+import 'dotenv/config'
 
-const port = 3001;
+const port = process.env.PORT || 3001;
 
 const app = express();
 
@@ -20,6 +22,7 @@ app.get("/", (req, res) => {
 
 const start = async () => {
   try {
+    await userController.addSuperUser();
     app.listen(port, () => {
       console.log(`Express server running on port ${port}`);
     });

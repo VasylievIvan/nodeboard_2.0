@@ -1,10 +1,11 @@
 import { Request, Response } from "express";
 import db from "../db";
 import fs from "fs";
+import { customAlphabet } from "nanoid";
+import camelize from "camelize-ts";
 
 const handleFile = async (file: Express.Multer.File | undefined) => {
-  const _nanoid = await import("nanoid");
-  const nanoid = _nanoid.customAlphabet("1234567890", 16);
+  const nanoid = customAlphabet("1234567890", 16);
   if (file) {
     if (
       file.mimetype === "image/jpeg" ||
@@ -29,7 +30,6 @@ const handleFile = async (file: Express.Multer.File | undefined) => {
 
 class PostController {
   async addPost(req: Request, res: Response) {
-    const camelize = await import("camelize-ts");
 
     const { message } = req.body;
     //handle file upload
@@ -42,7 +42,7 @@ class PostController {
         [message, fileName]
       );
       //res.json(camelize.default(newPost.rows[0]));
-      res.json(camelize.default(newPost.rows[0]));
+      res.json(camelize(newPost.rows[0]));
       return;
     } else {
       const newPost = await db.query(
@@ -50,14 +50,13 @@ class PostController {
         [message]
       );
       //res.json(camelize.default(newPost.rows[0]));
-      res.json(camelize.default(newPost.rows[0]));
+      res.json(camelize(newPost.rows[0]));
       return;
     }
   }
   async getPosts(req: Request, res: Response) {
-    const camelize = await import("camelize-ts");
     const allPosts = await db.query("SELECT * FROM post");
-    res.json(camelize.default(allPosts.rows));
+    res.json(camelize(allPosts.rows));
   }
 }
 

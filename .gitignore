@@ -133,6 +133,7 @@ dist
 # dependencies
 /node_modules
 /server/data/img
+/server/build
 /.pnp
 .pnp.js
 
