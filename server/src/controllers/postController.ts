@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import db from "../db";
+import db from "../db.js";
 import fs from "fs";
 import { customAlphabet } from "nanoid";
 import camelize from "camelize-ts";

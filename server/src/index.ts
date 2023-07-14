@@ -1,10 +1,9 @@
 import express from "express";
-import { getPosts } from "./controllers/dataController";
-import cors from "cors";
-import postRoutes from "./routes/postRoutes";
-import bodyParser from "body-parser";
-import userController from "./controllers/userController";
 import 'dotenv/config'
+import cors from "cors";
+import bodyParser from "body-parser";
+import postRoutes from "./routes/postRoutes.js";
+import userController from "./controllers/userController.js";
 
 const port = process.env.PORT || 3001;
 

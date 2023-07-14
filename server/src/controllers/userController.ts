@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import db from "../db";
+import db from "../db.js";
 import { hashSync } from "bcrypt-ts";
 
 class UserController {
