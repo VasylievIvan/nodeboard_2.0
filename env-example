@@ -1,0 +1,10 @@
+POSTGRES_PASSWORD=password123
+PORT=3001
+SUPERUSER_NAME="superuser"
+SUPERUSER_PASSWORD="superuser"
+
+DB_USER="postgres"
+DB_PASSWORD="password123"
+DB_NAME="nodeboard_db"
+DB_HOST="localhost"
+DB_PORT=5432

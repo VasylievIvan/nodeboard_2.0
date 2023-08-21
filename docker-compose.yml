@@ -1,0 +1,40 @@
+version: '3.8'  # You can use a different version if needed
+
+services:
+  nodeboard-postgres:
+    image: postgres
+    container_name: nodeboard-postgres
+    ports:
+      - "${DB_PORT}:${DB_PORT}"
+    environment:
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+    restart: unless-stopped
+
+  server:
+    build: ./server
+    container_name: nodeboard-server
+    ports:
+      - "3001:${PORT}"
+    environment:
+      - PORT=${PORT}
+      - SUPERUSER_NAME=${SUPERUSER_NAME}
+      - SUPERUSER_PASSWORD=${SUPERUSER_PASSWORD}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+    depends_on:
+      - nodeboard-postgres
+    restart: unless-stopped
+
+  client:
+    build: ./client
+    container_name: nodeboard-client
+    ports:
+      - "80:3000"
+    depends_on:
+      - server
+    restart: unless-stopped
